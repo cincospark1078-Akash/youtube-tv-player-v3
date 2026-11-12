@@ -1,46 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Required for streaming public test videos -->
+    <!-- Required for ExoPlayer to stream video -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <!-- Android TV requirements: leanback declared optional so it can also test on phones/tablets -->
+    
+    <!-- Required for TV apps so they show up on the Android TV launcher -->
     <uses-feature
         android:name="android.software.leanback"
-        android:required="false" />
+        android:required="true" />
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:banner="@mipmap/ic_launcher"
         android:label="TV ExoPlayer"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize"
-            android:screenOrientation="landscape">
-
-            <!-- Standard launcher intent filter -->
+            android:screenOrientation="landscape"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <!-- Android TV Leanback launcher intent filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <!-- Required category for Android TV apps -->
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
